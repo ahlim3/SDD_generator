@@ -18,7 +18,7 @@ def EnergyLib(E):
     if E > 500:
         IntE = round(E / 100) * 100
     elif E > 100:
-        IntE = round(E / 5) * 5
+        IntE = round(E / 50) * 50
     else:
         IntE = round(E/10) * 10
     while IntE > 0:
