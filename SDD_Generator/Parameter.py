@@ -20,7 +20,7 @@ def EnergyLib(E):
     elif E > 100:
         IntE = round(E / 50) * 50
     else:
-        IntE = round(E/10) * 10
+        IntE = round(E / 5) * 5
     while IntE > 0:
         EnergyRange.append(int(IntE))
         if IntE > 500:
