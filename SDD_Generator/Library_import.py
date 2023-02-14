@@ -34,7 +34,7 @@ def Lib_csv_Import(energy, particle):
     return particle_index
 
 #SDD generator
-def SDD_gen(Dose, Particle, Energy, Author, Info):
+def SDD_gen(Dose, Particle, Energy, Author, Info, Time_Switch):
     path = str(Energy) + "keV_SDD/"
     isExist = os.path.exists(path)
     if not isExist:
@@ -59,7 +59,7 @@ def SDD_gen(Dose, Particle, Energy, Author, Info):
     k.write("Mean particle energy," + str(Energy/1000) + ";\n")
     k.write("Energy distribuion,M,0;\n")
     k.write("Particle fraction,1.0;\n")
-    k.write("Dose or fluence,1,1e-12;\n")
+    k.write("Dose or fluence,1," + str(Dose) + ";\n")
     k.write("Dose rate,0.0;\n")
     k.write("Irradiation target,Nucleus;\n")
     k.write("Volumes,0,5,5,5,0,0,0,1,4.65,4.65,4.65,0,0,0;\n")
@@ -73,7 +73,10 @@ def SDD_gen(Dose, Particle, Energy, Author, Info):
     k.write("Damage definition,1,0,10,10,17.5;\n")
     k.write("Time,0.000000;\n")
     k.write("Damage and primary count,"+ str(len(Info)) + ","+ str(Particle) + ";\n")
-    k.write("Data entries,1,1,1,1,1,1,1,0,0,0,0,0,0,0;\n")
+    if Time_Switch == 1:
+        k.write("Data entries,1,1,1,1,1,1,1,0,0,0,0,0,0,1;\n")
+    else:
+        k.write("Data entries,1,1,1,1,1,1,1,0,0,0,0,0,0,0;\n")
     k.write("Additional information,;\n")
     k.write("***EndOfHeader***;\n")
     for line in Info:
